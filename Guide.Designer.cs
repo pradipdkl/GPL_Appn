@@ -42,7 +42,7 @@
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(493, 116);
             this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "For Example:  Circle 50  || Rectangle 50,50,50 || Rectangle 50,50.  ";
+            this.textBox1.Text = "For Example:  Circle 50  || Triangle 50,50,50 || Rectangle 50,50.  ";
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // Guide

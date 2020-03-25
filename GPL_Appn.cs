@@ -22,13 +22,16 @@ namespace GPL_Appn
 
         private void btnrun_Click(object sender, EventArgs e)
         {
-            string com = textBox1.Text;
-            Command cmd = new Command();
-            cmd.Commandline(com, G);
-            cmd.Movecoordinates(com, G);
-            int X = cmd.mouseX;
-            int Y = cmd.mouseY;
-            G.TranslateTransform(X, Y);
+            if (textBox1.Text != null && !textBox1.Text.Equals(""))
+            {
+                string com = textBox1.Text;
+                Command cmd = new Command();
+                cmd.Commandline(com, G);
+            }
+            else
+            {
+                MessageBox.Show("Must be field the values");
+            }
 
         }
 
@@ -104,14 +107,23 @@ namespace GPL_Appn
         private void button2_Click(object sender, EventArgs e)
         {
             textBox1.Text = "";
-            textBoxResultOutput.Text = "";
             pictureBox1.Refresh();
+            G.ResetTransform();
         }
 
         private void hintToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Guide GD = new Guide();
             GD.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void textBoxResultOutput_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }
