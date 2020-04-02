@@ -19,7 +19,6 @@ namespace GPL_Appn
             high = height;
             hypo = hypotenus;
         }
-
         public Boolean chkTriangleValidity()
         {
             //Condition valid or not

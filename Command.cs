@@ -7,7 +7,6 @@ using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-
 namespace GPL_Appn
 {
     public class Command
@@ -20,7 +19,6 @@ namespace GPL_Appn
         String[] command = { "moveto", "drawto" };
         //String[] variables = { "width", "height", "radius", "hypotenus" };
         String[] shapes = { "circle", "rectangle", "triangle" };
-
 
         public void Commandline(string textcmd, Graphics G)
         {
@@ -49,7 +47,7 @@ namespace GPL_Appn
                         mouseY = int.Parse(parms[1]);
                         G.TranslateTransform(mouseX, mouseY);
                     }
-                    if (firstWord == "drawto")
+                    else if (firstWord == "drawto")
                     {
                         String args = textcmd.Substring(6, (textcmd.Length - 6));
                         String[] parms = args.Split(',');
@@ -62,9 +60,26 @@ namespace GPL_Appn
                         G.TranslateTransform(xax, yax);
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        public void Shapecommand(string textcmd, Graphics G)
+        {
+            try
+            {
+                textcmd = Regex.Replace(textcmd, @"\s+", " ");
+                string[] words = textcmd.Split(' ');
+                //helps to remove white lines between words.
+                for(int i=0;i<words.Length;i++)
+                {
+                    words[i] = words[i].Trim();
+                }
+                String firstWord = words[0].ToLower();
                 Boolean firstWordShape = shapes.Contains(firstWord);
                 ShapeFactory sf = new ShapeFactory();
-
                 if (firstWordShape)
                 {
                     if (firstWord == "circle")

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace GPL_Appn
 {
@@ -19,32 +20,49 @@ namespace GPL_Appn
             InitializeComponent();
             G = pictureBox1.CreateGraphics();
         }
-
         private void btnrun_Click(object sender, EventArgs e)
         {
             if (textBox1.Text != null && !textBox1.Text.Equals(""))
             {
-                string com = textBox1.Text;
-                Command cmd = new Command();
-                cmd.Commandline(com, G);
+                Validation Val = new Validation(textBox1);
+                if (!Val.IsSomethingInvalid)
+                {
+                    try
+                    {
+                        string com = textBox1.Text;
+                        Command cmd = new Command();
+                        cmd.Commandline(com, G);
+                        cmd.Shapecommand(com, G);
+                    }
+                    catch (Exception ex)
+                    {
+                        txtErrorResult.Text += "\r\n" + ex.ToString();
+                    }
+                }
+                else if (!Val.isSyntaxValid)
+                {
+                    txtErrorResult.Text += "\r\n Command Line Syntax Erros.";
+                }
+                else if (!Val.IsParameterValid)
+                {
+                    txtErrorResult.Text += "\r\n Invalid Parameters Error.";
+                }
+                else
+                {
+                    txtErrorResult.Text += "\r\n Some Error Occured";
+                }
             }
             else
             {
-                MessageBox.Show("Must be field the values");
+                txtErrorResult.Text += ("Oops-Please Fill In The Required Command Fields: ");
             }
-
         }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
         }
-
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-
         }
-
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog save = new SaveFileDialog();
@@ -57,7 +75,6 @@ namespace GPL_Appn
                 MessageBox.Show("File Saved Successfully");
             }
         }
-
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Stream myStream = null;
@@ -93,38 +110,35 @@ namespace GPL_Appn
 
             }
         }
-
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             pictureBox1.Refresh();
+            txtErrorResult.Text = "";
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             textBox1.Text = "";
             pictureBox1.Refresh();
+            txtErrorResult.Text = "";
             G.ResetTransform();
         }
-
         private void hintToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Guide GD = new Guide();
             GD.ShowDialog();
         }
-
         private void button3_Click(object sender, EventArgs e)
         {
-           
         }
-
         private void textBoxResultOutput_TextChanged(object sender, EventArgs e)
         {
-
+        }
+        private void txtErrorResult_TextChanged(object sender, EventArgs e)
+        {
         }
     }
 }

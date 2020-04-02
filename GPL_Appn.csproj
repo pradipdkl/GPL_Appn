@@ -66,6 +66,7 @@
     <Compile Include="Shape.cs" />
     <Compile Include="ShapeFactory.cs" />
     <Compile Include="Triangle.cs" />
+    <Compile Include="Validation.cs" />
     <EmbeddedResource Include="GPL_Appn.resx">
       <DependentUpon>GPL_Appn.cs</DependentUpon>
     </EmbeddedResource>

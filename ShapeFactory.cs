@@ -6,8 +6,16 @@ using System.Threading.Tasks;
 
 namespace GPL_Appn
 {
+    /// <summary>
+    /// Factory class to get required shape
+    /// </summary>
     public class ShapeFactory
     {
+        /// <summary>
+        /// Method to get required shape
+        /// </summary>
+        /// <param name="ShapeTypes"></param>
+        /// <returns></returns>
         public IShape GetShape(string ShapeTypes)
         {
             if(ShapeTypes==null)

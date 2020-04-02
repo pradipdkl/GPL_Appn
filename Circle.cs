@@ -21,12 +21,22 @@ namespace GPL_Appn
             hypo = hypotenus;
             rad = radius;
         }
+        /// <summary>
+        /// to draw circle 
+        /// </summary>
+        /// <param name="G"></param>
+
+        /// <summary>
+        /// parameter to draw circle
+        /// </summary>
+
 
         public void Draw(Graphics G,int x,int y)
         {
             //SolidBrush SB = new SolidBrush(Color.Black);
             G.DrawEllipse(new Pen(Color.Black, 5), x, y, rad, rad);
-            //G.FillEllipse(SB, 100, 100, 100, 100);//int.Parse(txtshapesize.text),int.Parse(txtshapesize.Text));
+            //G.FillEllipse(SB, 100, 100, 100, 100);//int.Parse(txtshapesize.text),
+            //int.Parse(txtshapesize.Text));
 
         }
     }

@@ -11,12 +11,18 @@ namespace GPL_Appn
     {
         private float widt;
         private float high;
-
+        /// <summary>
+        /// parameter for rectangle
+        /// </summary>
         public void GetValue(float width, float height, float hypotenus, float radius)
         {
             widt = width;
             high = height;
         }
+        /// <summary>
+        /// draw rectangle
+        /// </summary>
+        /// <param name="G"></param>
         public void Draw(Graphics G, int x,int y)
         {
             //SolidBrush sb = new SolidBrush(Color.Red);
