@@ -161,7 +161,7 @@ namespace GPL_Appn
                     else { IsCmdValid = false; IsParameterValid = false; }
                 }
             }
-            else if (firstWordIsVariable) // radius = 6;
+            else if (firstWordIsVariable)
             {
                 if (commandsAfterSpliting.Length == 3)
                 {
