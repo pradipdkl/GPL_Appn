@@ -8,6 +8,9 @@ using System.Text.RegularExpressions;
 
 namespace GPL_Appn
 {
+    /// <summary>
+    /// Simple validation class
+    /// </summary>
     public class Validation
     {
         private Boolean isCmdValid = true;
@@ -24,9 +27,32 @@ namespace GPL_Appn
         public bool IsSomethingInvalid { get => isSomethingInvalid; set => isSomethingInvalid = value; }
 
         private int LineNumber = 0;
+        private Boolean doesCmdHasLoop = false;
+        private Boolean doesCmdHasEndLoop = false;
+        private Boolean doesCmdHasIf = false;
+        private Boolean doesCmdHasEndif = false;
+
+        private int endIfLineNo = 0;
+        private int loopLineNo;
+        private int endLoopLineNo;
+        private int ifLineNo;
+
+        public int linenumber { get => linenumber; set => linenumber = value; }
+        public bool DoesCmdHasLoop { get => doesCmdHasLoop; set => doesCmdHasLoop = value; }
+        public bool DoesCmdHasEndLoop { get => doesCmdHasEndLoop; set => doesCmdHasEndLoop = value; }
+        public bool DoesCmdHasIf { get => doesCmdHasIf; set => doesCmdHasIf = value; }
+        public bool DoesCmdHasEndif { get => doesCmdHasEndif; set => doesCmdHasEndif = value; }
+        public int LoopLineNo { get => loopLineNo; set => loopLineNo = value; }
+        public int EndLoopLineNo { get => endLoopLineNo; set => endLoopLineNo = value; }
+        public int IfLineNo { get => ifLineNo; set => ifLineNo = value; }
+        public int EndIfLineNo { get => endIfLineNo; set => endIfLineNo = value; }
+
+
+        TextBox textBoxCmd;
 
         public Validation(TextBox textBox)
         {
+            this.textBoxCmd = textBoxCmd;
             int numberOfCmdLines = textBox.Lines.Length;
             if (numberOfCmdLines == 0) { IsCmdValid = false; }
             else
@@ -57,7 +83,7 @@ namespace GPL_Appn
         }
         public void CheckCmdLineValidation(string cmd)
         {
-            String[] syntaxs = { "drawto", "moveto", "run" };
+            String[] syntaxs = { "drawto", "moveto", "run","loop","enfif","endloop","if" };
             String[] shapes = { "circle", "rectangle", "triangle" };
             String[] variables = { "radius", "width", "height", "hypotenuse" };
             cmd = Regex.Replace(cmd, @"\s+", " ");
@@ -89,6 +115,72 @@ namespace GPL_Appn
                         }
                     }
                     else
+                    {
+                        IsCmdValid = false;
+                    }
+                }
+
+                else if (firstWord.Equals("clear") || firstWord.Equals("reset"))
+                {
+                    IsCmdValid = true;
+                }
+                else if (firstWord.Equals("loop"))
+                {
+                    if (commandsAfterSpliting.Length == 2)
+                    {
+                        if (!commandsAfterSpliting[1].Trim().All(char.IsDigit))
+                        {
+                            IsCmdValid = false;
+                        }
+                    }
+                    else
+                    {
+                        IsCmdValid = false;
+                    }
+                }
+                else if (firstWord.Equals("endloop"))
+                {
+                    if (commandsAfterSpliting.Length == 1)
+                    {
+                        if (!commandsAfterSpliting[0].Equals("endloop"))
+                        {
+                            IsCmdValid = false;
+                        }
+                    }
+                    else
+                    {
+                        IsCmdValid = false;
+                    }
+                }//endif
+                else if (firstWord.Equals("if"))//if radius = x then
+                {
+                    if (commandsAfterSpliting.Length == 5)
+                    {
+                        if (variables.Contains(commandsAfterSpliting[1].ToLower()))
+                        {
+                            if (commandsAfterSpliting[2].Equals("="))
+                            {
+                                if (commandsAfterSpliting[3].Trim().All(char.IsDigit))
+                                {
+                                    if (!commandsAfterSpliting[4].ToLower().Equals("then"))
+                                    {
+                                        IsCmdValid = false;
+                                    }
+                                }
+                                else { IsCmdValid = false; }
+
+                            }
+                            else { IsCmdValid = false; }
+                        }
+                        else { IsCmdValid = false; }
+
+                    }
+                    else { IsCmdValid = false; }
+
+                }
+                else if (firstWord.Equals("endif"))
+                {
+                    if (commandsAfterSpliting.Length != 1)
                     {
                         IsCmdValid = false;
                     }

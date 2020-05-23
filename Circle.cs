@@ -7,18 +7,22 @@ using System.Drawing;
 
 namespace GPL_Appn
 {
+    /// <summary>
+    /// circle 
+    /// </summary>
     public class Circle : IShape
     {
-        private float widt;
-        private float high;
-        private float hypo;
         private float rad;
 
+        /// <summary>
+        /// shape parameter
+        /// </summary>
+        /// <param name="width">The width</param>
+        /// <param name="height">The height</param>
+        /// <param name="hypotenus">the hypotenus</param>
+        /// <param name="radius">the radius</param>
         public void GetValue(float width, float height, float hypotenus, float radius)
         {
-            widt = width;
-            high = height;
-            hypo = hypotenus;
             rad = radius;
         }
         /// <summary>
@@ -30,6 +34,11 @@ namespace GPL_Appn
         /// parameter to draw circle
         /// </summary>
 
+        /// <summary>
+        /// circle parameterized constructor
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
 
         public void Draw(Graphics G,int x,int y)
         {

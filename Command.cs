@@ -9,6 +9,9 @@ using System.Windows.Forms;
 
 namespace GPL_Appn
 {
+    /// <summary>
+    /// Command class
+    /// </summary>
     public class Command
     {
         int mouseX;
@@ -20,6 +23,11 @@ namespace GPL_Appn
         //String[] variables = { "width", "height", "radius", "hypotenus" };
         String[] shapes = { "circle", "rectangle", "triangle" };
 
+        /// <summary>
+        /// Commandline
+        /// </summary>
+        /// <param name="textcmd"></param>
+        /// <param name="G"></param>
         public void Commandline(string textcmd, Graphics G)
         {
             try
@@ -66,6 +74,11 @@ namespace GPL_Appn
                 MessageBox.Show(ex.Message);
             }
         }
+        /// <summary>
+        /// shapecommand
+        /// </summary>
+        /// <param name="textcmd"></param>
+        /// <param name="G"></param>
         public void Shapecommand(string textcmd, Graphics G)
         {
             try

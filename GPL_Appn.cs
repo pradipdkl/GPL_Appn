@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 
 namespace GPL_Appn
 {
-    public partial class GPL_Appn : Form
+    public partial class GPL_Appn : Form 
     {
         Graphics G;
         public GPL_Appn()
@@ -139,6 +139,16 @@ namespace GPL_Appn
         }
         private void txtErrorResult_TextChanged(object sender, EventArgs e)
         {
+        }
+
+        private void settingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GPL_Appn_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
