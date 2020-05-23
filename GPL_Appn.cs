@@ -18,7 +18,7 @@ namespace GPL_Appn
         public GPL_Appn()
         {
             InitializeComponent();
-            G = pictureBox1.CreateGraphics();
+            G = pictureBox1.CreateGraphics(); 
         }
         private void btnrun_Click(object sender, EventArgs e)
         {
@@ -29,10 +29,8 @@ namespace GPL_Appn
                 {
                     try
                     {
-                        string com = textBox1.Text;
                         Command cmd = new Command();
-                        cmd.Commandline(com, G);
-                        cmd.Shapecommand(com, G);
+                        cmd.loadCommand(textBox1,G,pictureBox1);
                     }
                     catch (Exception ex)
                     {
