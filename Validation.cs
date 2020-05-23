@@ -271,5 +271,73 @@ namespace GPL_Appn
         }
 
 
+
+        public void CheckCmdLoopAndIfValidation()
+        {
+            int numberOfLines = textBoxCmd.Lines.Length;
+            for (int i = 0; i < numberOfLines; i++)
+            {
+                String singleLineCmd = textBoxCmd.Lines[i];
+                singleLineCmd = singleLineCmd.Trim();
+                if (!singleLineCmd.Equals(""))
+                {
+                    DoesCmdHasLoop = Regex.IsMatch(singleLineCmd.ToLower(), "loop");
+                    if (DoesCmdHasLoop)
+                    {
+                        LoopLineNo = (i + 1);
+                    }
+                    DoesCmdHasEndLoop = singleLineCmd.ToLower().Contains("endloop");
+                    if (DoesCmdHasEndLoop)
+                    {
+                        EndLoopLineNo = (i + 1);
+                    }
+                    DoesCmdHasIf = Regex.IsMatch(singleLineCmd.ToLower(), "if");
+                    if (DoesCmdHasIf)
+                    {
+                        IfLineNo = (i + 1);
+                    }
+                    DoesCmdHasEndif = singleLineCmd.ToLower().Contains("endif");
+                    if (DoesCmdHasEndif)
+                    {
+                        EndIfLineNo = (i + 1);
+                    }
+                }
+            }
+            if (DoesCmdHasLoop)
+            {
+                if (DoesCmdHasEndLoop)
+                {
+                    if (LoopLineNo > EndLoopLineNo)
+                    {
+                        IsCmdValid = false;
+                        MessageBox.Show("'ENDLOOP' must be after loop start: Loop starts at" + LoopLineNo + " Loop ends at: " + EndLoopLineNo);
+                    }
+                }
+                else
+                {
+                    IsCmdValid = false;
+                    MessageBox.Show("Loop Not Ended with 'ENDLOOP'");
+                }
+            }
+            if (DoesCmdHasIf)
+            {
+                if (DoesCmdHasEndif)
+                {
+                    if (EndIfLineNo < IfLineNo)
+                    {
+                        IsCmdValid = false;
+                        MessageBox.Show("'ENDIF' must be after IF: If starts at" + IfLineNo + " and ends at: " + EndIfLineNo);
+                    }
+                }
+                else
+                {
+                    IsCmdValid = false;
+                    MessageBox.Show("IF Not Ended with 'ENDIF'");
+                }
+            }
+        }
     }
+
+
 }
+
