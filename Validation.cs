@@ -15,51 +15,124 @@ namespace GPL_Appn
     {
         private Boolean isCmdValid = true;
 
+        /// <summary>Gets or sets a value indicating whether this instance is command valid.</summary>
+        /// <value>
+        /// <c>true</c> if this instance is command valid; otherwise, <c>false</c>.</value>
         public bool IsCmdValid { get => isCmdValid; set => isCmdValid = value; }
 
-        public Boolean isSyntaxValid = true;
+        private Boolean isSyntaxValid = true;
+        /// <summary>Gets or sets a value indicating whether this instance is Syntax valid.</summary>
+        /// <value>
+        /// <c>true</c> if this instance is syntax valid; otherwise, <c>false</c>.</value>
         public bool IsSyntaxValid { get => isSyntaxValid; set => isSyntaxValid = value; }
         
         private Boolean isParameterValid = true;
+
+        /// <summary>Gets or sets a value indicating whether this instance is parameter valid.</summary>
+        /// <value>
+        /// <c>true</c> if this instance is parameter valid; otherwise, <c>false</c>.</value>
         public bool IsParameterValid { get => isParameterValid; set => isParameterValid = value; }
 
         private Boolean isSomethingInvalid = false;
+
+        /// <summary>Gets or sets a value indicating whether this instance is command invalid.</summary>
+        /// <value>
+        /// <c>true</c> if this instance is command invalid; otherwise, <c>false</c>.</value>
         public bool IsSomethingInvalid { get => isSomethingInvalid; set => isSomethingInvalid = value; }
 
+
+        /// <summary>
+        /// lineNumber: indicates line number of the command in the multi-textline control.
+        /// </summary>
         private int LineNumber = 0;
+
+        /// <summary>
+        /// doesCmdHasLoop: indicates whether command has "LOOP" keyword in the multi-textline control.
+        /// </summary>
         private Boolean doesCmdHasLoop = false;
+
+        /// <summary>
+        /// doesCmdHasEndLoop: indicates whether command has "ENDLOOP" keyword in the multi-textline control.
+        /// </summary>
         private Boolean doesCmdHasEndLoop = false;
+
+        /// <summary>
+        /// doesCmdHasIf: indicates whether command has "IF" keyword in the multi-textline control.
+        /// </summary>
         private Boolean doesCmdHasIf = false;
+
+        /// <summary>
+        /// doesCmdHasEndif: indicates whether command has "ENDIF" keyword in the multi-textline control.
+        /// </summary>
         private Boolean doesCmdHasEndif = false;
 
+
+        /// <summary>
+        /// doesCmdHasEndif: indicates whether command has "ENDIF" keyword in the multi-textline control.
+        /// </summary>
         private int endIfLineNo = 0;
         private int loopLineNo;
         private int endLoopLineNo;
         private int ifLineNo;
 
+
+        /// <summary>Gets or sets the line number.</summary>
+        /// <value>The line number.</value>
         public int linenumber { get => linenumber; set => linenumber = value; }
+
+        /// <summary>Gets or sets a value indicating whether [does command has loop].</summary>
+        /// <value>
+        ///   <c>true</c> if [does command has loop]; otherwise, <c>false</c>.</value>
         public bool DoesCmdHasLoop { get => doesCmdHasLoop; set => doesCmdHasLoop = value; }
+
+        /// <summary>Gets or sets a value indicating whether [does command has end loop].</summary>
+        /// <value>
+        ///   <c>true</c> if [does command has end loop]; otherwise, <c>false</c>.</value>
         public bool DoesCmdHasEndLoop { get => doesCmdHasEndLoop; set => doesCmdHasEndLoop = value; }
+
+        /// <summary>Gets or sets a value indicating whether [does command has if].</summary>
+        /// <value>
+        ///   <c>true</c> if [does command has if]; otherwise, <c>false</c>.</value>
         public bool DoesCmdHasIf { get => doesCmdHasIf; set => doesCmdHasIf = value; }
+
+        /// <summary>Gets or sets a value indicating whether [does command has endif].</summary>
+        /// <value>
+        ///   <c>true</c> if [does command has endif]; otherwise, <c>false</c>.</value>
         public bool DoesCmdHasEndif { get => doesCmdHasEndif; set => doesCmdHasEndif = value; }
+
+        /// <summary>Gets or sets the loop line no.</summary>
+        /// <value>The loop line no.</value>
         public int LoopLineNo { get => loopLineNo; set => loopLineNo = value; }
+
+        /// <summary>Gets or sets the end loop line no.</summary>
+        /// <value>The end loop line no.</value>
         public int EndLoopLineNo { get => endLoopLineNo; set => endLoopLineNo = value; }
+
+        /// <summary>Gets or sets if line no.</summary>
+        /// <value>If line no.</value>
         public int IfLineNo { get => ifLineNo; set => ifLineNo = value; }
+
+        /// <summary>Gets or sets the end if line no.</summary>
+        /// <value>The end if line no.</value>
         public int EndIfLineNo { get => endIfLineNo; set => endIfLineNo = value; }
 
 
         TextBox textBoxCmd;
 
-        public Validation(TextBox textBox)
+        /// <summary>
+        /// Check the command validations.
+        /// </summary>
+        /// <param name="textBoxCmd"></param>
+        public Validation(TextBox textBoxCmd)
         {
             this.textBoxCmd = textBoxCmd;
-            int numberOfCmdLines = textBox.Lines.Length;
+            int numberOfCmdLines = textBoxCmd.Lines.Length;
             if (numberOfCmdLines == 0) { IsCmdValid = false; }
             else
             {
                 for (int i = 0; i < numberOfCmdLines; i++)
                 {
-                    String singleLineCmd = textBox.Lines[i];
+                    String singleLineCmd = textBoxCmd.Lines[i];
                     singleLineCmd = singleLineCmd.Trim();
                     if (!singleLineCmd.Equals(""))
                     {
@@ -81,6 +154,10 @@ namespace GPL_Appn
                 }
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cmd"></param>
         public void CheckCmdLineValidation(string cmd)
         {
             String[] syntaxs = { "drawto", "moveto", "run","loop","enfif","endloop","if" };
@@ -271,7 +348,9 @@ namespace GPL_Appn
         }
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         public void CheckCmdLoopAndIfValidation()
         {
             int numberOfLines = textBoxCmd.Lines.Length;

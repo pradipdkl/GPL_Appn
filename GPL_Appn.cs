@@ -12,13 +12,27 @@ using System.Text.RegularExpressions;
 
 namespace GPL_Appn
 {
+    /// <summary>
+    /// Main Class
+    /// </summary>
+
     public partial class GPL_Appn : Form 
     {
         Graphics G;
+
+
+        Pen pen;
+        Color maincolor;
+        private int size;
+        /// <summary>
+        /// 
+        /// </summary>
         public GPL_Appn()
         {
             InitializeComponent();
-            G = pictureBox1.CreateGraphics(); 
+            G = pictureBox1.CreateGraphics();
+            pen = new Pen(maincolor, size);
+
         }
         private void btnrun_Click(object sender, EventArgs e)
         {
@@ -37,7 +51,7 @@ namespace GPL_Appn
                         txtErrorResult.Text += "\r\n" + ex.ToString();
                     }
                 }
-                else if (!Val.isSyntaxValid)
+                else if (!Val.IsSyntaxValid)
                 {
                     txtErrorResult.Text += "\r\n Command Line Syntax Erros.";
                 }
@@ -147,6 +161,33 @@ namespace GPL_Appn
         private void GPL_Appn_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnCircle_Click(object sender, EventArgs e)
+        {
+            Pen blackPen = new Pen(maincolor, size);
+
+            // Create rectangle for ellipse.
+            RectangleF rect = new RectangleF(0.0F, 0.0F, 200.0F, 100.0F);
+
+            // Draw ellipse to screen.
+            G.DrawEllipse(blackPen, rect);
+        }
+
+        private void btncolor_Click(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() != DialogResult.Cancel)
+            {
+                btnCircle.BackColor = colorDialog1.Color;
+                maincolor = colorDialog1.Color;
+            }
+               pen = new Pen(maincolor, size);
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            size = Convert.ToInt32(comboBox1.SelectedItem.ToString());
+            pen = new Pen(maincolor, size);
         }
     }
 }

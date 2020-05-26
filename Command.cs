@@ -296,7 +296,6 @@ namespace GPL_Appn
         /// Commandline
         /// </summary>
         /// <param name="textcmd"></param>
-        /// <param name="G"></param>
         public void Shapecommand(string textcmd)
         {
             try
