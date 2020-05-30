@@ -8,8 +8,9 @@ using System.Drawing;
 namespace GPL_Appn
 {
     /// <summary>
-    /// circle 
+    /// circle class
     /// </summary>
+    /// <Inheritance cref="IShape"/>
     public class Circle : IShape
     {
         private float rad;

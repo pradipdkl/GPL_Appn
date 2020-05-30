@@ -592,6 +592,26 @@ namespace GPL_Appn
             }
             return lineNum;
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // Command
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.ClientSize = new System.Drawing.Size(1097, 620);
+            this.Name = "Command";
+            this.Load += new System.EventHandler(this.Command_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        private void Command_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

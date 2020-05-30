@@ -163,12 +163,13 @@ namespace GPL_Appn
 
         }
 
+
         private void btnCircle_Click(object sender, EventArgs e)
         {
             Pen blackPen = new Pen(maincolor, size);
 
-            // Create rectangle for ellipse.
-            RectangleF rect = new RectangleF(0.0F, 0.0F, 200.0F, 100.0F);
+            // Create Circle for ellipse.
+            RectangleF rect = new RectangleF(100, 100, 100, 100);
 
             // Draw ellipse to screen.
             G.DrawEllipse(blackPen, rect);
