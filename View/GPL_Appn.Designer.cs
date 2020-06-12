@@ -45,6 +45,8 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btncolor = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.hintToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutUsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -66,7 +68,7 @@
             this.hintToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1097, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(1047, 25);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -87,7 +89,7 @@
             // 
             this.saveToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -95,7 +97,7 @@
             // 
             this.loadToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.loadToolStripMenuItem.Text = "Load";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
@@ -103,13 +105,16 @@
             // 
             this.exitToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // hintToolStripMenuItem
             // 
             this.hintToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.hintToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hintToolStripMenuItem1,
+            this.aboutUsToolStripMenuItem});
             this.hintToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.hintToolStripMenuItem.Name = "hintToolStripMenuItem";
             this.hintToolStripMenuItem.Size = new System.Drawing.Size(49, 21);
@@ -119,8 +124,8 @@
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.SystemColors.Desktop;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.Color.Yellow;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.ForeColor = System.Drawing.Color.Cornsilk;
             this.textBox1.Location = new System.Drawing.Point(12, 89);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
@@ -169,11 +174,12 @@
             // 
             // txtErrorResult
             // 
-            this.txtErrorResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtErrorResult.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtErrorResult.Location = new System.Drawing.Point(12, 353);
             this.txtErrorResult.Multiline = true;
             this.txtErrorResult.Name = "txtErrorResult";
             this.txtErrorResult.ReadOnly = true;
+            this.txtErrorResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtErrorResult.Size = new System.Drawing.Size(395, 255);
             this.txtErrorResult.TabIndex = 7;
             this.txtErrorResult.TextChanged += new System.EventHandler(this.txtErrorResult_TextChanged);
@@ -219,11 +225,25 @@
             this.btncolor.UseVisualStyleBackColor = true;
             this.btncolor.Click += new System.EventHandler(this.btncolor_Click);
             // 
+            // hintToolStripMenuItem1
+            // 
+            this.hintToolStripMenuItem1.Name = "hintToolStripMenuItem1";
+            this.hintToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.hintToolStripMenuItem1.Text = "Hint";
+            this.hintToolStripMenuItem1.Click += new System.EventHandler(this.hintToolStripMenuItem1_Click);
+            // 
+            // aboutUsToolStripMenuItem
+            // 
+            this.aboutUsToolStripMenuItem.Name = "aboutUsToolStripMenuItem";
+            this.aboutUsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutUsToolStripMenuItem.Text = "About us";
+            this.aboutUsToolStripMenuItem.Click += new System.EventHandler(this.aboutUsToolStripMenuItem_Click);
+            // 
             // GPL_Appn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1097, 620);
+            this.ClientSize = new System.Drawing.Size(1047, 615);
             this.Controls.Add(this.btncolor);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.btnCircle);
@@ -264,6 +284,8 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button btncolor;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.ToolStripMenuItem hintToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem aboutUsToolStripMenuItem;
     }
 }
 

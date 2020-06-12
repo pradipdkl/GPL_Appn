@@ -36,7 +36,7 @@ namespace GPL_Appn
         }
         private void btnrun_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text != null && !textBox1.Text.Equals(""))
+            if (textBox1.Text != null && !textBox1.Equals(""))
             {
                 Validation Val = new Validation(textBox1);
                 if (!Val.IsSomethingInvalid)
@@ -61,7 +61,7 @@ namespace GPL_Appn
                 }
                 else
                 {
-                    txtErrorResult.Text += "\r\n Some Error Occured";
+                    txtErrorResult.Text += "\r\n Some Error Occured. Click Help Options for checking commands and syntax.";
                 }
             }
             else
@@ -140,8 +140,7 @@ namespace GPL_Appn
         }
         private void hintToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Guide GD = new Guide();
-            GD.ShowDialog();
+            
         }
         private void button3_Click(object sender, EventArgs e)
         {
@@ -189,6 +188,53 @@ namespace GPL_Appn
         {
             size = Convert.ToInt32(comboBox1.SelectedItem.ToString());
             pen = new Pen(maincolor, size);
+        }
+
+        private void aboutUsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                txtErrorResult.Text = "";
+                string Aboutus = "\n Graphical Programming Language Application:" +
+                    "\r\n It Provides us with a rich set of namespaces, classes, methods and events for developing " +
+                    "applications with graphical capabilities. With the help of its Graphics class, the System.Drawing" +
+                    " namespace provides functionality for drawing shapes, printing texts on to the form, and much more." +
+                    "\r\n \r\n GPL Application Version v1.1 ";
+
+                txtErrorResult.Text = Aboutus;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void hintToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                txtErrorResult.Text = "";
+                string Guide = "HINT For GPL Commands :" +
+                    "\r\n moveto X,Y  =>(Move Postion) " +
+                    "\r\n drawto X,Y =>(Move Position)" +
+                    "\r\n clear =>(Clear drawing area) " +
+                    "\r\n \r\nDraw Commands :\r\n( Circle radius )\r\n( Rectangle Width,height )" +
+                    "\r\n(Triangle width,height,hypotenus)" +
+                    "\r\n \r\nFor looping: "+
+                    "\r\n loop 1"+
+                    "\r\n circle 50"+
+                    "\r\n endloop"+
+                    "\r\n \r\n For if statement:" +
+                    "\r\n counter = 1" +
+                    "\r\n if counter = 1 then" +
+                    "\r\n circle 100" +
+                    "\r\n endif";
+                txtErrorResult.Text = Guide;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

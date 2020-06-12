@@ -19,32 +19,31 @@ namespace GPL_Appn
         int xax;
         int yax;
         /// <summary>
-        /// 
+        /// Global variable.
         /// </summary>
         public int width = 0;
         /// <summary>
-        /// 
+        /// Global variable.
         /// </summary>
         public int radius = 0;
         /// <summary>
-        /// 
+        /// Global variable.
         /// </summary>
         public int height = 0;
         /// <summary>
-        /// 
+        /// Global variable.
         /// </summary>
         public int hypotenus = 0;
         /// <summary>
-        /// 
+        /// Global variable.
         /// </summary>
         public int counter = 0;
         /// <summary>
-        /// 
+        /// Global variable.
         /// </summary>
         public int loopnumber = 0;
-
         /// <summary>
-        /// 
+        /// Global variable.
         /// </summary>
         public int dsize = 0;
 
@@ -228,7 +227,6 @@ namespace GPL_Appn
                             dsize += increaseValue;
                         }
                     }
-
                 }
                 else
                 {
@@ -375,7 +373,6 @@ namespace GPL_Appn
                                 shc.Draw(graph, 0, 0);
                             }
                         }
-
                     }
                     else if (firstWord.ToLower().Equals("triangle"))
                     {
@@ -500,7 +497,6 @@ namespace GPL_Appn
                             }
                         }
                     }
-
                 }
             }
             catch (Exception ex)
@@ -593,7 +589,7 @@ namespace GPL_Appn
             return lineNum;
         }
 
-        private void InitializeComponent()
+        /*private void InitializeComponent()
         {
             this.SuspendLayout();
             // 
@@ -606,9 +602,29 @@ namespace GPL_Appn
             this.ResumeLayout(false);
             this.PerformLayout();
 
-        }
+        }*/
 
         private void Command_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // Command
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.ClientSize = new System.Drawing.Size(1047, 615);
+            this.Name = "Command";
+            this.Load += new System.EventHandler(this.Command_Load_1);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        private void Command_Load_1(object sender, EventArgs e)
         {
 
         }

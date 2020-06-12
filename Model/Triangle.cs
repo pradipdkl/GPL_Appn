@@ -56,14 +56,14 @@ namespace GPL_Appn
                 Pen myPen = new Pen(Color.Black, 5);
                 Point[] pot = new Point[3];
 
-                pot[0].X = x;
-                pot[0].Y = y;
+                pot[0].X = 10;
+                pot[0].Y = 10;
 
-                pot[1].X = Convert.ToInt32(x - widt);
-                pot[1].Y = y;
+                pot[1].X = Convert.ToInt32(50 - widt);
+                pot[1].Y = 10;
 
-                pot[2].X = x;
-                pot[2].Y = Convert.ToInt32(y - high);
+                pot[2].X = 10;
+                pot[2].Y = Convert.ToInt32(50 - high);
 
                 G.DrawPolygon(myPen, pot);
 

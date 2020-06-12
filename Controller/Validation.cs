@@ -78,7 +78,7 @@ namespace GPL_Appn
 
         /// <summary>Gets or sets the line number.</summary>
         /// <value>The line number.</value>
-        public int linenumber { get => linenumber; set => linenumber = value; }
+        public int lineNumber { get => lineNumber; set => lineNumber = value; }
 
         /// <summary>Gets or sets a value indicating whether [does command has loop].</summary>
         /// <value>
@@ -127,7 +127,10 @@ namespace GPL_Appn
         {
             this.textBoxCmd = textBoxCmd;
             int numberOfCmdLines = textBoxCmd.Lines.Length;
-            if (numberOfCmdLines == 0) { IsCmdValid = false; }
+            if (numberOfCmdLines == 0) 
+            {
+                IsCmdValid = false;
+            }
             else
             {
                 for (int i = 0; i < numberOfCmdLines; i++)
@@ -140,29 +143,39 @@ namespace GPL_Appn
                         LineNumber = (i + 1);
                         if (!IsCmdValid)
                         {
-                            if (!IsParameterValid) { MessageBox.Show("Paramter errors at: " + LineNumber); }
-                            else if (!isSyntaxValid) { MessageBox.Show("Syntax errors at: " + LineNumber); }
-                            else { MessageBox.Show("Validation error at: " + LineNumber); }
+                            if (!IsParameterValid)
+                            {
+                                MessageBox.Show("Paramter error at Line : " + LineNumber);
+                            }
+                            else if (!IsSyntaxValid)
+                            {
+                                MessageBox.Show("Command Not Found. Error at Line : " + LineNumber);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Command error at Line: " + LineNumber);
+                            }
                             IsSomethingInvalid = true;
                         }
-                        else
-                        {
-
-                        }
                     }
-
+                }
+                CheckCmdLoopAndIfValidation();
+                if (!IsCmdValid)
+                {
+                    IsSomethingInvalid = true;
                 }
             }
         }
         /// <summary>
-        /// 
+        /// Check commands for any error such as syntax, parameter or validity.
         /// </summary>
-        /// <param name="cmd"></param>
+        /// <param name="cmd">String</param>
         public void CheckCmdLineValidation(string cmd)
         {
-            String[] syntaxs = { "drawto", "moveto", "run","loop","enfif","endloop","if" };
+            String[] syntaxs = { "drawto", "moveto", "clear","reset", "run","loop","endif","endloop","if" };
             String[] shapes = { "circle", "rectangle", "triangle" };
-            String[] variables = { "radius", "width", "height", "hypotenuse" };
+            String[] variables = { "radius", "width", "height", "counter", "hypotenuse"};
+           
             cmd = Regex.Replace(cmd, @"\s+", " ");
             string[] commandsAfterSpliting = cmd.Split(' ');
             for (int i = 0; i < commandsAfterSpliting.Length; i++)
@@ -196,7 +209,6 @@ namespace GPL_Appn
                         IsCmdValid = false;
                     }
                 }
-
                 else if (firstWord.Equals("clear") || firstWord.Equals("reset"))
                 {
                     IsCmdValid = true;
@@ -262,29 +274,47 @@ namespace GPL_Appn
                         IsCmdValid = false;
                     }
                 }
-                else if (firstWord.Equals("run"))
+            }
+                /*else if (firstWord.Equals("run"))
                 {
                     if (commandsAfterSpliting.Length != 1)
                     {
                         IsCmdValid = false;
                     }
-                }
-            }
+                }*/
+            
             else if (firstWordIsShape)
             {
                 if (firstWord.ToLower().Equals("circle"))
                 {
                     if (commandsAfterSpliting.Length == 2)
                     {
-                        if (commandsAfterSpliting[1].Trim().All(char.IsDigit)) { }
+                        if (commandsAfterSpliting[1].Trim().All(char.IsDigit))
+                        { 
+                        }
                         else if (commandsAfterSpliting[1].Trim().All(char.IsLetter))
                         {
-                            if (variables.Contains(commandsAfterSpliting[1].ToLower())) { }
-                            else { IsCmdValid = false; IsParameterValid = false; }
+                            if (variables.Contains(commandsAfterSpliting[1].ToLower()))
+                            {
+                                checkIfVariableDefined(commandsAfterSpliting[1]);
+                            }
+                            else 
+                            { 
+                                IsCmdValid = false; 
+                                IsParameterValid = false;
+                            }
                         }
-                        else { IsCmdValid = false; IsParameterValid = false; }
+                        else 
+                        { 
+                            IsCmdValid = false; 
+                            IsParameterValid = false;
+                        }
                     }
-                    else { IsCmdValid = false; IsParameterValid = false; }
+                    else 
+                    { 
+                        IsCmdValid = false; 
+                        IsParameterValid = false; 
+                    }
                 }
                 else if (firstWord.ToLower().Equals("rectangle"))
                 {
@@ -296,17 +326,34 @@ namespace GPL_Appn
                         for (int i = 0; i < parms.Length; i++)
                         {
                             parms[i] = parms[i].Trim();
-                            if (parms[i].All(char.IsDigit)) { }
+                            if (parms[i].All(char.IsDigit)) 
+                            {
+                            }
                             else if (parms[i].All(char.IsLetter))
                             {
-                                if (variables.Contains(parms[i].ToLower())) { }
-                                else { IsCmdValid = false; IsParameterValid = false; }
+                                if (variables.Contains(parms[i].ToLower())) 
+                                {
+                                    checkIfVariableDefined(parms[i]);
+                                }
+                                else 
+                                { 
+                                    IsCmdValid = false;
+                                    IsParameterValid = false;
+                                }
                             }
-                            else { IsCmdValid = false; IsParameterValid = false; }
+                            else
+                            { 
+                                IsCmdValid = false; 
+                                IsParameterValid = false; 
+                            }
 
                         }
                     }
-                    else { IsCmdValid = false; IsParameterValid = false; }
+                    else 
+                    {
+                        IsCmdValid = false;
+                        IsParameterValid = false;
+                    }
                 }
                 else if (firstWord.ToLower().Equals("triangle"))
                 {
@@ -318,16 +365,33 @@ namespace GPL_Appn
                         for (int i = 0; i < parms.Length; i++)
                         {
                             parms[i] = parms[i].Trim();
-                            if (parms[i].All(char.IsDigit)) { }
+                            if (parms[i].All(char.IsDigit))
+                            {
+                            }
                             else if (parms[i].All(char.IsLetter))
                             {
-                                if (variables.Contains(parms[i].ToLower())) { }
-                                else { IsCmdValid = false; IsParameterValid = false; }
+                                if (variables.Contains(parms[i].ToLower()))
+                                {
+                                    checkIfVariableDefined(parms[i]);
+                                }
+                                else
+                                {
+                                    IsCmdValid = false;
+                                    IsParameterValid = false;
+                                }
                             }
-                            else { IsCmdValid = false; IsParameterValid = false; }
+                            else
+                            { 
+                                IsCmdValid = false; 
+                                IsParameterValid = false; 
+                            }
                         }
                     }
-                    else { IsCmdValid = false; IsParameterValid = false; }
+                    else 
+                    {
+                        IsCmdValid = false; 
+                        IsParameterValid = false; 
+                    }
                 }
             }
             else if (firstWordIsVariable)
@@ -336,20 +400,33 @@ namespace GPL_Appn
                 {
                     if (commandsAfterSpliting[1].Equals("="))
                     {
-                        if (!commandsAfterSpliting[2].Trim().All(char.IsDigit)) { IsCmdValid = false; IsParameterValid = false; }
+                        if (!commandsAfterSpliting[2].Trim().All(char.IsDigit)) 
+                        {
+                            IsCmdValid = false; 
+                            IsParameterValid = false;
+                        }
                     }
-                    else { IsCmdValid = false; }
+                    else
+                    {
+                        IsCmdValid = false;
+                    }
                 }
-                else { IsCmdValid = false; }
+                else
+                {
+                    IsCmdValid = false; }
             }
-            else { IsCmdValid = false; isSyntaxValid = false; }
-            if (!IsCmdValid) { IsSomethingInvalid = true; }
-
+            else 
+            {
+                IsCmdValid = false;
+                isSyntaxValid = false;
+            }
+            if (!IsCmdValid) 
+            {
+                IsSomethingInvalid = true;
+            }
         }
-
-
         /// <summary>
-        /// 
+        /// Check the loop and if command validation.
         /// </summary>
         public void CheckCmdLoopAndIfValidation()
         {
@@ -413,6 +490,48 @@ namespace GPL_Appn
                     IsCmdValid = false;
                     MessageBox.Show("IF Not Ended with 'ENDIF'");
                 }
+            }
+        }
+        /// <summary>
+        /// check the variable whether defined or not.
+        /// </summary>
+        /// <param name="variable"></param>
+        public void checkIfVariableDefined(string variable)
+        {
+            Boolean isvariablefound = false;
+            if (textBoxCmd.Lines.Length > 1)
+            {
+                if (lineNumber > 0)
+                {
+                    for (int i = 0; i < lineNumber; i++)
+                    {
+                        String oneLineCommand = textBoxCmd.Lines[i];
+                        oneLineCommand = oneLineCommand.Trim();
+                        if (!oneLineCommand.Equals(""))
+                        {
+                            Boolean isVariableDefined = oneLineCommand.ToLower().Contains(variable.ToLower());
+                            if (isVariableDefined)
+                            {
+                                isvariablefound = true;
+                            }
+                        }
+                    }
+                    if (!isvariablefound)
+                    {
+                        MessageBox.Show("Variable is not defined");
+                        IsCmdValid = false;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Variable is not defined");
+                    IsCmdValid = false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Variable is not defined");
+                IsCmdValid = false;
             }
         }
     }
