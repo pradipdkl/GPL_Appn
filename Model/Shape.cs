@@ -14,13 +14,11 @@ namespace GPL_Appn
     {
         /// <param name="x"></param>
         /// <param name="y"></param>
-
         /// <summary>
         /// draw method
         /// </summary>
         /// <param name="G">Graphics</param>
         void Draw(Graphics G, int x, int y);
-
         /// <summary>Sets the shape parameter.</summary>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>

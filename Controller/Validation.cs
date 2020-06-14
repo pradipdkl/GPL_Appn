@@ -40,11 +40,10 @@ namespace GPL_Appn
         /// <c>true</c> if this instance is command invalid; otherwise, <c>false</c>.</value>
         public bool IsSomethingInvalid { get => isSomethingInvalid; set => isSomethingInvalid = value; }
 
-
         /// <summary>
         /// lineNumber: indicates line number of the command in the multi-textline control.
         /// </summary>
-        private int LineNumber = 0;
+        private int lineNumber = 0;
 
         /// <summary>
         /// doesCmdHasLoop: indicates whether command has "LOOP" keyword in the multi-textline control.
@@ -66,7 +65,6 @@ namespace GPL_Appn
         /// </summary>
         private Boolean doesCmdHasEndif = false;
 
-
         /// <summary>
         /// doesCmdHasEndif: indicates whether command has "ENDIF" keyword in the multi-textline control.
         /// </summary>
@@ -75,10 +73,9 @@ namespace GPL_Appn
         private int endLoopLineNo;
         private int ifLineNo;
 
-
         /// <summary>Gets or sets the line number.</summary>
         /// <value>The line number.</value>
-        public int lineNumber { get => lineNumber; set => lineNumber = value; }
+        public int LineNumber { get => lineNumber; set => lineNumber = value; }
 
         /// <summary>Gets or sets a value indicating whether [does command has loop].</summary>
         /// <value>
@@ -116,9 +113,7 @@ namespace GPL_Appn
         /// <value>The end if line no.</value>
         public int EndIfLineNo { get => endIfLineNo; set => endIfLineNo = value; }
 
-
         TextBox textBoxCmd;
-
         /// <summary>
         /// Check the command validations.
         /// </summary>
@@ -257,7 +252,6 @@ namespace GPL_Appn
                                     }
                                 }
                                 else { IsCmdValid = false; }
-
                             }
                             else { IsCmdValid = false; }
                         }
@@ -275,14 +269,6 @@ namespace GPL_Appn
                     }
                 }
             }
-                /*else if (firstWord.Equals("run"))
-                {
-                    if (commandsAfterSpliting.Length != 1)
-                    {
-                        IsCmdValid = false;
-                    }
-                }*/
-            
             else if (firstWordIsShape)
             {
                 if (firstWord.ToLower().Equals("circle"))
@@ -346,7 +332,6 @@ namespace GPL_Appn
                                 IsCmdValid = false; 
                                 IsParameterValid = false; 
                             }
-
                         }
                     }
                     else 
@@ -437,36 +422,56 @@ namespace GPL_Appn
                 singleLineCmd = singleLineCmd.Trim();
                 if (!singleLineCmd.Equals(""))
                 {
-                    DoesCmdHasLoop = Regex.IsMatch(singleLineCmd.ToLower(), "loop");
-                    if (DoesCmdHasLoop)
+                    doesCmdHasLoop = Regex.IsMatch(singleLineCmd.ToLower(), @"\bloop\b");
+                    if (doesCmdHasLoop)
                     {
-                        LoopLineNo = (i + 1);
+                        loopLineNo = (i + 1);
                     }
-                    DoesCmdHasEndLoop = singleLineCmd.ToLower().Contains("endloop");
-                    if (DoesCmdHasEndLoop)
+                    doesCmdHasEndLoop = singleLineCmd.ToLower().Contains("endloop");
+                    if (doesCmdHasEndLoop)
                     {
-                        EndLoopLineNo = (i + 1);
+                        endLoopLineNo = (i + 1);
                     }
-                    DoesCmdHasIf = Regex.IsMatch(singleLineCmd.ToLower(), "if");
-                    if (DoesCmdHasIf)
+                    doesCmdHasIf = Regex.IsMatch(singleLineCmd.ToLower(), @"\bif\b");
+                    if (doesCmdHasIf)
                     {
-                        IfLineNo = (i + 1);
+                        ifLineNo = (i + 1);
                     }
-                    DoesCmdHasEndif = singleLineCmd.ToLower().Contains("endif");
-                    if (DoesCmdHasEndif)
+                    doesCmdHasEndif = singleLineCmd.ToLower().Contains("endif");
+                    if (doesCmdHasEndif)
                     {
-                        EndIfLineNo = (i + 1);
+                        endIfLineNo = (i + 1);
                     }
                 }
             }
-            if (DoesCmdHasLoop)
+            if (loopLineNo > 0)
             {
-                if (DoesCmdHasEndLoop)
+                doesCmdHasLoop = true;
+            }
+            if (endLoopLineNo > 0)
+            {
+                doesCmdHasLoop = true;
+            }
+            if (ifLineNo > 0)
+            {
+                doesCmdHasIf = true;
+            }
+            if (endIfLineNo > 0)
+            {
+                doesCmdHasEndif = true;
+            }
+            if (doesCmdHasLoop)
+            {
+                if (doesCmdHasEndLoop)
                 {
-                    if (LoopLineNo > EndLoopLineNo)
+                    if (loopLineNo < endLoopLineNo)
+                    {
+
+                    }
+                    else
                     {
                         IsCmdValid = false;
-                        MessageBox.Show("'ENDLOOP' must be after loop start: Loop starts at" + LoopLineNo + " Loop ends at: " + EndLoopLineNo);
+                        MessageBox.Show("'ENDLOOP' must be after loop start");
                     }
                 }
                 else
@@ -475,14 +480,18 @@ namespace GPL_Appn
                     MessageBox.Show("Loop Not Ended with 'ENDLOOP'");
                 }
             }
-            if (DoesCmdHasIf)
+            if (doesCmdHasIf)
             {
-                if (DoesCmdHasEndif)
+                if (doesCmdHasIf)
                 {
-                    if (EndIfLineNo < IfLineNo)
+                    if (ifLineNo < endIfLineNo)
+                    {
+
+                    }
+                    else
                     {
                         IsCmdValid = false;
-                        MessageBox.Show("'ENDIF' must be after IF: If starts at" + IfLineNo + " and ends at: " + EndIfLineNo);
+                        MessageBox.Show("'ENDIF' must be after IF");
                     }
                 }
                 else
@@ -535,7 +544,5 @@ namespace GPL_Appn
             }
         }
     }
-
-
 }
 

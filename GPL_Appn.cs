@@ -24,11 +24,6 @@ namespace GPL_Appn
         Pen pen;
         Color maincolor;
         private int size;
-        int? initX = null;
-        int? initY = null;
-        bool startPaint = false;
-        bool drawSquare = false;
-        bool drawCircle = false;
         /// <summary>
         /// 
         /// </summary>
@@ -36,7 +31,7 @@ namespace GPL_Appn
         {
             InitializeComponent();
             G = pictureBox1.CreateGraphics();
-            
+            pen = new Pen(maincolor, size);
 
         }
         private void btnrun_Click(object sender, EventArgs e)
@@ -170,7 +165,13 @@ namespace GPL_Appn
 
         private void btnCircle_Click(object sender, EventArgs e)
         {
-            drawCircle = true;
+            Pen blackPen = new Pen(maincolor, size);
+
+            // Create Circle for ellipse.
+            RectangleF rect = new RectangleF(100, 100, 100, 100);
+
+            // Draw ellipse to screen.
+            G.DrawEllipse(blackPen, rect);
         }
 
         private void btncolor_Click(object sender, EventArgs e)
@@ -185,7 +186,8 @@ namespace GPL_Appn
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+            size = Convert.ToInt32(comboBox1.SelectedItem.ToString());
+            pen = new Pen(maincolor, size);
         }
 
         private void aboutUsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -233,51 +235,6 @@ namespace GPL_Appn
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        private void canvas_Click(object sender, EventArgs e)
-        {
-            drawSquare = true;
-        }
-
-        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
-        {
-            startPaint = true;
-            if (drawSquare)
-            {
-                //use solid brush for filling the graphics shapes
-                SolidBrush sb = new SolidBrush(btnCircle.BackColor);
-                //setting the width and hight same for creating square
-                //getting the width and height value for the textbox(txt_shapesize)
-                G.FillRectangle(sb, e.X, e.Y, int.Parse(comboBox1.Text), int.Parse(comboBox1.Text));
-                startPaint = false;
-                drawSquare = false;
-            }
-            if (drawCircle)
-            {
-                SolidBrush sb = new SolidBrush(btnCircle.BackColor);
-                G.FillEllipse(sb, e.X, e.Y, int.Parse(comboBox1.Text), int.Parse(comboBox1.Text));
-                startPaint = false;
-                drawCircle = false;
-            }
-        }
-
-        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (startPaint)
-            {
-                Pen p = new Pen(btn_square.BackColor, float.Parse(comboBox1.Text));
-                G.DrawLine(p, new Point(initX ?? e.X, initY ?? e.Y), new Point(e.X, e.Y));
-                initX = e.X;
-                initY = e.Y;
-            }
-        }
-
-        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
-        {
-            startPaint = false;
-            initX = null;
-            initY = null;
         }
     }
 }

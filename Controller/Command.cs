@@ -52,14 +52,14 @@ namespace GPL_Appn
         Graphics graph;
 
         String[] command = { "moveto", "drawto", "clear", "reset", "loop", "endloop", "if", "endif" };
-        String[] variables = { "width", "height", "radius", "hypotenus" };
-        String[] shapes = { "circle", "rectangle", "triangle","counter", "hypotenus", "size" };
-/// <summary>
-/// 
-/// </summary>
-/// <param name="textBoxCmd"></param>
-/// <param name="graph"></param>
-/// <param name="panelDraw"></param>
+        String[] variables = { "radius", "width", "height", "counter", "hypotenus", "size" };
+        String[] shapes = { "circle", "rectangle", "triangle" };
+        /// <summary>
+        /// Load the command for run or execution.
+        /// </summary>
+        /// <param name="textBoxCmd"></param>
+        /// <param name="graph"></param>
+        /// <param name="panelDraw"></param>
         public void loadCommand(TextBox textBoxCmd, Graphics graph, PictureBox panelDraw)
         {
             this.textBox = textBoxCmd;
@@ -464,7 +464,6 @@ namespace GPL_Appn
                             {
                                 loop = true;
                             }
-
                         }
                         else if (words[1].ToLower().Equals("hypotenus"))
                         {
@@ -472,7 +471,6 @@ namespace GPL_Appn
                             {
                                 loop = true;
                             }
-
                         }
                         else if (words[1].ToLower().Equals("counter"))
                         {

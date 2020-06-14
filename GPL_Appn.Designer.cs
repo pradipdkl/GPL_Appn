@@ -36,8 +36,6 @@
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hintToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hintToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutUsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnrun = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -47,7 +45,8 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btncolor = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.btn_square = new System.Windows.Forms.Button();
+            this.hintToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutUsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -61,9 +60,6 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
-            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
-            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
             // menuStrip1
             // 
@@ -93,7 +89,7 @@
             // 
             this.saveToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -101,7 +97,7 @@
             // 
             this.loadToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.loadToolStripMenuItem.Text = "Load";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
@@ -109,7 +105,7 @@
             // 
             this.exitToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -124,20 +120,6 @@
             this.hintToolStripMenuItem.Size = new System.Drawing.Size(49, 21);
             this.hintToolStripMenuItem.Text = "Help";
             this.hintToolStripMenuItem.Click += new System.EventHandler(this.hintToolStripMenuItem_Click);
-            // 
-            // hintToolStripMenuItem1
-            // 
-            this.hintToolStripMenuItem1.Name = "hintToolStripMenuItem1";
-            this.hintToolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
-            this.hintToolStripMenuItem1.Text = "Hint";
-            this.hintToolStripMenuItem1.Click += new System.EventHandler(this.hintToolStripMenuItem1_Click);
-            // 
-            // aboutUsToolStripMenuItem
-            // 
-            this.aboutUsToolStripMenuItem.Name = "aboutUsToolStripMenuItem";
-            this.aboutUsToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
-            this.aboutUsToolStripMenuItem.Text = "About us";
-            this.aboutUsToolStripMenuItem.Click += new System.EventHandler(this.aboutUsToolStripMenuItem_Click);
             // 
             // textBox1
             // 
@@ -207,7 +189,7 @@
             this.btnCircle.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCircle.BackgroundImage")));
             this.btnCircle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnCircle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCircle.Location = new System.Drawing.Point(490, 37);
+            this.btnCircle.Location = new System.Drawing.Point(468, 39);
             this.btnCircle.Name = "btnCircle";
             this.btnCircle.Size = new System.Drawing.Size(46, 44);
             this.btnCircle.TabIndex = 8;
@@ -218,16 +200,15 @@
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "10",
-            "20",
-            "30",
-            "40",
-            "50",
-            "60",
-            "70",
-            "80",
-            "90"});
-            this.comboBox1.Location = new System.Drawing.Point(670, 39);
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"});
+            this.comboBox1.Location = new System.Drawing.Point(535, 39);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 9;
@@ -236,7 +217,7 @@
             // 
             // btncolor
             // 
-            this.btncolor.Location = new System.Drawing.Point(820, 37);
+            this.btncolor.Location = new System.Drawing.Point(686, 39);
             this.btncolor.Name = "btncolor";
             this.btncolor.Size = new System.Drawing.Size(75, 23);
             this.btncolor.TabIndex = 10;
@@ -244,22 +225,25 @@
             this.btncolor.UseVisualStyleBackColor = true;
             this.btncolor.Click += new System.EventHandler(this.btncolor_Click);
             // 
-            // btn_square
+            // hintToolStripMenuItem1
             // 
-            this.btn_square.Image = ((System.Drawing.Image)(resources.GetObject("btn_square.Image")));
-            this.btn_square.Location = new System.Drawing.Point(556, 33);
-            this.btn_square.Name = "btn_square";
-            this.btn_square.Size = new System.Drawing.Size(53, 48);
-            this.btn_square.TabIndex = 11;
-            this.btn_square.UseVisualStyleBackColor = true;
-            this.btn_square.Click += new System.EventHandler(this.canvas_Click);
+            this.hintToolStripMenuItem1.Name = "hintToolStripMenuItem1";
+            this.hintToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.hintToolStripMenuItem1.Text = "Hint";
+            this.hintToolStripMenuItem1.Click += new System.EventHandler(this.hintToolStripMenuItem1_Click);
+            // 
+            // aboutUsToolStripMenuItem
+            // 
+            this.aboutUsToolStripMenuItem.Name = "aboutUsToolStripMenuItem";
+            this.aboutUsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutUsToolStripMenuItem.Text = "About us";
+            this.aboutUsToolStripMenuItem.Click += new System.EventHandler(this.aboutUsToolStripMenuItem_Click);
             // 
             // GPL_Appn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1047, 615);
-            this.Controls.Add(this.btn_square);
             this.Controls.Add(this.btncolor);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.btnCircle);
@@ -302,7 +286,6 @@
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.ToolStripMenuItem hintToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem aboutUsToolStripMenuItem;
-        private System.Windows.Forms.Button btn_square;
     }
 }
 
